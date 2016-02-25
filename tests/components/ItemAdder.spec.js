@@ -1,7 +1,9 @@
 import React from 'react'
 import TestUtils, { Simulate } from 'react-addons-test-utils'
 import {findDOMNode} from 'react-dom'
-import ItemAdder from '../../src/components/ItemAdder'
+import ItemAdder from 'components/ItemAdder'
+import {addItem} from 'actions/items'
+import Item from 'models/item'
 
 describe('Components', () => {
   describe('ItemAdder', () => {
@@ -57,5 +59,24 @@ describe('Components', () => {
         })
       })
     })
+
+    describe('#addItem', () => {
+      let component, dispatch
+      const itemText = 'Water'
+
+      beforeEach(() => {
+        dispatch = sinon.spy()
+        component = new ItemAdder({ dispatch })
+
+        component.addItem(itemText)
+      })
+
+      it('dispatches an ADD_ITEM action with an item model created from the given text', () => {
+        const expectedAction = addItem(new Item(itemText))
+
+        expect(dispatch).to.have.been.calledWith(expectedAction)
+      })
+    })
   })
+
 })

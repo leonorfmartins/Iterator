@@ -1,6 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
+import { addItem } from 'actions/items'
+import Item from 'models/item'
 
 class ItemAdder extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired
+  }
+
   constructor(props) {
     super(props)
 
@@ -13,6 +19,13 @@ class ItemAdder extends Component {
     this.setState({
       active: true
     })
+  }
+
+  addItem(text) {
+    const item = new Item(text)
+    const { dispatch } = this.props
+
+    dispatch(addItem(item))
   }
 
   renderTooltip() {
