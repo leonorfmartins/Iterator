@@ -1,12 +1,12 @@
 
 class Item {
-  constructor(name) {
+  constructor (name) {
     this._attributes = {
       name
     }
   }
 
-  get name() {
+  get name () {
     return this._attributes.name
   }
 }
