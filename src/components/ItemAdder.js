@@ -7,7 +7,7 @@ class ItemAdder extends Component {
     dispatch: PropTypes.func.isRequired
   }
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -15,20 +15,20 @@ class ItemAdder extends Component {
     }
   }
 
-  activate() {
+  activate () {
     this.setState({
       active: true
     })
   }
 
-  addItem(text) {
+  addItem (text) {
     const item = new Item(text)
     const { dispatch } = this.props
 
     dispatch(addItem(item))
   }
 
-  renderTooltip() {
+  renderTooltip () {
     const { active } = this.state
 
     if (!active) { return null }
@@ -41,11 +41,11 @@ class ItemAdder extends Component {
     )
   }
 
-  render() {
+  render () {
     return (
       <div data-component='ItemAdder'>
         <button className='add'
-          onClick={ () => this.activate() }>
+          onClick={() => this.activate()}>
           +
         </button>
         {this.renderTooltip()}
